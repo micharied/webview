@@ -375,6 +375,18 @@ private:
                          edit_menu);
     objc::msg_send<void>(menubar, objc::selector("addItem:"), edit_menu_item);
 
+    item =
+        create_menu_item(NSString_stringWithUTF8String("Undo"), "undo:", "z");
+    objc::msg_send<void>(edit_menu, objc::selector("addItem:"), item);
+
+    item =
+        create_menu_item(NSString_stringWithUTF8String("Redo"), "redo:", "y");
+    objc::msg_send<void>(edit_menu, objc::selector("addItem:"), item);
+
+    item = objc::msg_send<id>(objc::get_class("NSMenuItem"),
+                              objc::selector("separatorItem"));
+    objc::msg_send<void>(edit_menu, objc::selector("addItem:"), item);
+
     item = create_menu_item(NSString_stringWithUTF8String("Cut"), "cut:", "x");
     objc::msg_send<void>(edit_menu, objc::selector("addItem:"), item);
 
